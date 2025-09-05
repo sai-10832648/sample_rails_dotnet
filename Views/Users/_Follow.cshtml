@@ -1,0 +1,6 @@
+@model sample_rails_app_8th_edNT.Models.User
+@using (Html.BeginForm("Follow", "Relationships", FormMethod.Post))
+{
+    <input type="hidden" name="followedId" value="@Model.Id" />
+    <button type="submit" class="btn btn-primary">Follow</button>
+}

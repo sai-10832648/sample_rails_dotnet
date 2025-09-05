@@ -1,0 +1,17 @@
+@model IEnumerable<sample_rails_app_8th_edNT.Models.User>
+@{
+    ViewBag.Title = "All users";
+}
+<h1>All users</h1>
+
+@* Pagination: Use a library or custom logic for paging *@
+@await Html.PartialAsync("_Pagination", Model)
+
+<ul class="users">
+    @foreach (var user in Model)
+    {
+        @await Html.PartialAsync("_User", user)
+    }
+</ul>
+
+@await Html.PartialAsync("_Pagination", Model)

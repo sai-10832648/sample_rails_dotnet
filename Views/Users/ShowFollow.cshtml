@@ -1,0 +1,43 @@
+@using sample_rails_app_8th_edNT.Helpers
+@model sample_rails_app_8th_edNT.Models.User
+@{
+    ViewBag.Title = ViewBag.Title ?? "";
+    var users = ViewBag.Users as IEnumerable<sample_rails_app_8th_edNT.Models.User>;
+}
+<div class="row">
+    <aside class="col-md-4">
+        <section class="user_info">
+            <img src="@UsersHelper.GravatarFor(Model.Email, Model.Name)" alt="@Model.Name" class="gravatar" />
+            <h1>@Model.Name</h1>
+            <span><a asp-controller="Users" asp-action="Details" asp-route-id="@Model.Id">view my profile</a></span>
+            <span><b>Microposts:</b> @Model.Microposts?.Count()</span>
+        </section>
+        <section class="stats">
+            @await Html.PartialAsync("_Stats", Model)
+            @if (users != null && users.Any())
+            {
+                <div class="user_avatars">
+                    @foreach (var user in users)
+                    {
+                        <a asp-controller="Users" asp-action="Details" asp-route-id="@user.Id">
+                            <img src="@UsersHelper.GravatarFor(user.Email, user.Name, 30)" alt="@user.Name" class="gravatar" />
+                        </a>
+                    }
+                </div>
+            }
+        </section>
+    </aside>
+    <div class="col-md-8">
+        <h3>@ViewBag.Title</h3>
+        @if (users != null && users.Any())
+        {
+            <ul class="users follow">
+                @foreach (var user in users)
+                {
+                    @await Html.PartialAsync("_User", user)
+                }
+            </ul>
+            @await Html.PartialAsync("_Pagination", users)
+        }
+    </div>
+</div>

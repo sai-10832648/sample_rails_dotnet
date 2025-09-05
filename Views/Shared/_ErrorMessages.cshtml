@@ -1,0 +1,18 @@
+@model object
+@{
+    var errors = ViewData.ModelState.Values.SelectMany(v => v.Errors).ToList();
+}
+@if (errors.Any())
+{
+    <div id="error_explanation">
+        <div class="alert alert-danger">
+            The form contains @errors.Count error(s).
+        </div>
+        <ul>
+            @foreach (var error in errors)
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}

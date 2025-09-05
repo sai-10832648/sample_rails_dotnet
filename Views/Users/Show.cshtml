@@ -1,0 +1,37 @@
+@using sample_rails_app_8th_edNT.Helpers
+@model sample_rails_app_8th_edNT.Models.User
+@{
+    ViewBag.Title = Model.Name;
+    var microposts = ViewBag.Microposts as IEnumerable<sample_rails_app_8th_edNT.Models.Micropost>;
+}
+<div class="row">
+    <aside class="col-md-4">
+        <section>
+            <h1>
+                <img src="@UsersHelper.GravatarFor(Model.Email, Model.Name)" alt="@Model.Name" class="gravatar" />
+                @Model.Name
+            </h1>
+        </section>
+        <section class="stats">
+            @await Html.PartialAsync("_Stats", Model)
+        </section>
+    </aside>
+    <div class="col-md-8">
+        @if (User.Identity.IsAuthenticated)
+        {
+            @await Html.PartialAsync("_FollowForm", Model)
+        }
+        @if (microposts != null && microposts.Any())
+        {
+            <h3>Microposts (@microposts.Count())</h3>
+            <ol class="microposts">
+                @foreach (var micropost in microposts)
+                {
+                    @await Html.PartialAsync("_Micropost", micropost)
+                }
+            </ol>
+            @* Pagination: Use a library or custom logic for paging *@
+            @await Html.PartialAsync("_Pagination", microposts)
+        }
+    </div>
+</div>

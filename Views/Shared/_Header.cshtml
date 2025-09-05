@@ -1,0 +1,21 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <a asp-controller="Home" asp-action="Index" id="logo">sample app</a>
+    <nav>
+      <div class="navbar-header">
+        <button id="hamburger" type="button" class="navbar-toggle collapsed">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <ul id="navbar-menu" class="nav navbar-nav navbar-right collapse navbar-collapse">
+        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li><a asp-controller="StaticPages" asp-action="Help">Help</a></li>
+        <!-- TODO: Add user/account logic here -->
+        <li><a asp-controller="Users" asp-action="Index">Users</a></li>
+        <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

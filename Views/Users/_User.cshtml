@@ -1,0 +1,15 @@
+@using sample_rails_app_8th_edNT.Helpers
+@model sample_rails_app_8th_edNT.Models.User
+<li>
+    <img src="@UsersHelper.GravatarFor(Model.Email, Model.Name, 50)" alt="@Model.Name" class="gravatar" />
+    <a asp-controller="Users" asp-action="Details" asp-route-id="@Model.Id">@Model.Name</a>
+    @if (User.IsInRole("Admin") && !(User.Identity.Name == Model.Name))
+        {
+            <text> | </text>
+            <form asp-controller="Users" asp-action="Delete" asp-route-id="@Model.Id" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-link" onclick="return confirm('You sure?');">delete</button>
+            </form>
+        }
+</li>
+
+

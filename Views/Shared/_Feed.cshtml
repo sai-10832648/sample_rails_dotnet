@@ -1,0 +1,12 @@
+@model IEnumerable<sample_rails_app_8th_edNT.Models.Micropost>
+@if (Model != null && Model.Any())
+{
+    <ol class="microposts">
+        @foreach (var item in Model)
+        {
+            @await Html.PartialAsync("_Micropost", item)
+        }
+    </ol>
+    @* Pagination: Use a library or custom logic for paging *@
+    @await Html.PartialAsync("_Pagination", Model)
+}

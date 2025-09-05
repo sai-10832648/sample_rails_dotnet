@@ -1,0 +1,7 @@
+@model sample_rails_app_8th_edNT.Models.User
+<a asp-controller="Users" asp-action="Details" asp-route-id="@Model.Id">
+    <img src="@sample_rails_app_8th_edNT.Helpers.UsersHelper.GravatarFor(Model.Email, Model.Name, 50)" alt="@Model.Name" class="gravatar" />
+</a>
+<h1>@Model.Name</h1>
+<span><a asp-controller="Users" asp-action="Details" asp-route-id="@Model.Id">view my profile</a></span>
+<span>@(Model.Microposts?.Count() ?? 0) micropost(s)</span>

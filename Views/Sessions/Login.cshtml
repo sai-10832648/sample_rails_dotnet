@@ -1,0 +1,25 @@
+@{
+    ViewBag.Title = "Log in";
+}
+<h1>Log in</h1>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        @using (Html.BeginForm("Login", "Sessions", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" />
+
+            <label for="password">Password</label>
+            <a asp-controller="PasswordResets" asp-action="New">(forgot password)</a>
+            <input type="password" name="password" class="form-control" />
+
+            <label class="checkbox inline">
+                <input type="checkbox" name="rememberMe" />
+                <span>Remember me on this computer</span>
+            </label>
+
+            <button type="submit" class="btn btn-primary">Log in</button>
+        }
+        <p>New user? <a asp-controller="Users" asp-action="New">Sign up now!</a></p>
+    </div>
+</div>

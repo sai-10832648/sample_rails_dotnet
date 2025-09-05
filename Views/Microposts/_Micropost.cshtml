@@ -1,0 +1,26 @@
+@using sample_rails_app_8th_edNT.Helpers
+@model sample_rails_app_8th_edNT.Models.Micropost
+<li id="micropost-@Model.Id">
+    <a asp-controller="Users" asp-action="Details" asp-route-id="@Model.UserId">
+        <img src="@UsersHelper.GravatarFor(Model.User.Email, Model.User.Name, 50)" alt="@Model.User.Name" class="gravatar" />
+    </a>
+    <span class="user">
+        <a asp-controller="Users" asp-action="Details" asp-route-id="@Model.UserId">@Model.User.Name</a>
+    </span>
+    <span class="content">
+        @Model.Content
+        @if (!string.IsNullOrEmpty(Model.ImagePath))
+        {
+            <img src="@Model.ImagePath" style="max-width:500px;max-height:500px;" />
+        }
+    </span>
+    <span class="timestamp">
+        Posted @((DateTime.UtcNow - Model.CreatedAt).TotalMinutes < 60 ? $"{(int)(DateTime.UtcNow - Model.CreatedAt).TotalMinutes} minutes" : $"{(int)(DateTime.UtcNow - Model.CreatedAt).TotalHours} hours") ) ago.
+        @if (User.Identity.Name == Model.User.Name)
+        {
+            <form asp-controller="Microposts" asp-action="Delete" asp-route-id="@Model.Id" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-link" onclick="return confirm('You sure?');">delete</button>
+            </form>
+        }
+    </span>
+</li>

@@ -1,0 +1,12 @@
+@model sample_rails_app_8th_edNT.Models.Micropost
+@using (Html.BeginForm("Create", "Microposts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @await Html.PartialAsync("_ErrorMessages", Model)
+    <div class="field">
+        <textarea asp-for="Content" placeholder="Compose new micropost..." class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Post</button>
+    <span class="image">
+        <input asp-for="ImagePath" type="file" accept="image/jpeg,image/gif,image/png" />
+    </span>
+}

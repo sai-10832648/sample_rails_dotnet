@@ -1,0 +1,6 @@
+@model sample_rails_app_8th_edNT.Models.User
+Hi @Model.Name,
+
+Welcome to the Sample App! Click on the link below to activate your account:
+
+@Url.Action("Edit", "AccountActivations", new { id = Model.ActivationToken, email = Model.Email }, protocol: "https")

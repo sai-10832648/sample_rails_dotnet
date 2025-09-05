@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/sample_rails_app_8th_edNT.props" />
+</Project>

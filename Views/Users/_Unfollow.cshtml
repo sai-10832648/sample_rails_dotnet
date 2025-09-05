@@ -1,0 +1,6 @@
+@model sample_rails_app_8th_edNT.Models.User
+@using (Html.BeginForm("Delete", "Relationships", FormMethod.Post, new { @class = "form-inline" }))
+{
+    <input type="hidden" name="id" value="@ViewBag.RelationshipId" />
+    <button type="submit" class="btn">Unfollow</button>
+}

@@ -1,0 +1,15 @@
+@model sample_rails_app_8th_edNT.Models.User
+<div class="stats">
+    <a asp-controller="Users" asp-action="Following" asp-route-id="@Model.Id">
+        <strong id="following" class="stat">
+            @(Model.Following?.Count ?? 0)
+        </strong>
+        following
+    </a>
+    <a asp-controller="Users" asp-action="Followers" asp-route-id="@Model.Id">
+        <strong id="followers" class="stat">
+            @(Model.Followers?.Count ?? 0)
+        </strong>
+        followers
+    </a>
+</div>

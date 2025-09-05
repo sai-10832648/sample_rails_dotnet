@@ -1,0 +1,17 @@
+@model sample_rails_app_8th_edNT.Models.User
+@{
+    var currentUser = User.Identity.Name;
+}
+@if (currentUser != Model.Name)
+{
+    <div id="follow_form">
+        @if (ViewBag.IsFollowing != null && (bool)ViewBag.IsFollowing)
+        {
+            @await Html.PartialAsync("_Unfollow", Model)
+        }
+        else
+        {
+            @await Html.PartialAsync("_Follow", Model)
+        }
+    </div>
+}
